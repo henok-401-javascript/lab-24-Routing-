@@ -12,10 +12,10 @@ import React from "react";
           />
           <div className="method-choice">
           <select onChange={props.onMethodHandler}>
-            <option value='get'>GET</option>
-            <option value='post'>POST</option>
-            <option value='put'>PUT</option>
-            <option value='delete'>DELETE</option>
+            <option value="get">GET</option>
+            <option value="post">POST</option>
+            <option value="put">PUT</option>
+            <option value="delete">DELETE</option>
           </select>
           <div className="body-entry">
          <label>BODY :</label>

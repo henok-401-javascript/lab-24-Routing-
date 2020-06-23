@@ -5,6 +5,7 @@ import Form from './components/form/form';
 import Result from './components/results/results';
 import History from './components/history/history';
 import Header from './components/header/header';
+import  './style/style.scss';
 
 
 class App extends React.Component{
@@ -19,6 +20,7 @@ class App extends React.Component{
         bodyResponse:'',
         history:[],
         loading:false,
+        
       
     }
   }
@@ -33,6 +35,10 @@ this.setState({...this.state,url:e.target.value});
   }
   onHeaderChange(e){
     this.setState({...this.state,header:e.target.value});
+  }
+ async renderHandler(e){
+await this.setState({url:e.url,body:e.body,method:e.method,header:e.header});
+await this.submitHandler();
   }
 
   async submitHandler(e){
@@ -87,6 +93,8 @@ resBody = await res.json();
      onHeaderChange={this.onHeaderChange.bind(this)}
      submitHandler={this.submitHandler.bind(this)}
      />
+<History size='size' history={this.state.history}/>
+
 <If condition={this.state.loading}>
 <h4>loading....</h4>
 </If>
@@ -102,7 +110,7 @@ condition={this.state.headerResponse ||
 </If>
 
 
-<History size='size' history={this.state.history}/>
+
      </Route>
    
      <Route path='/history' exact>

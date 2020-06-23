@@ -1,0 +1,23 @@
+$white-color:#ffffff;
+$black-color:#000000;
+.form-input{
+text-align: center;
+margin: auto 10% ;
+    .input-field{
+width: 40%;
+height: 30px;
+    }
+    .method-choice{
+  text-align: right;
+   }
+}
+
+.header{
+  margin: 10px auto;
+  background-color:$white-color;
+  width: 80vw;
+  height: 80vh;
+  font-size: 25px;
+  overflow: scroll;
+  border: 3px solid rgb(31, 2, 2);
+}

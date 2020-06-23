@@ -17,15 +17,9 @@ import React from "react";
             <option value="put">PUT</option>
             <option value="delete">DELETE</option>
           </select>
-          <div className="body-entry">
-         <label>BODY :</label>
-         <textarea 
-         value={props.body}
-         onChange={props.onBodyChange}
-         ></textarea>
-          </div>
+
           <div className="header-entry">
-         <label>HEADER</label>
+         <label>HEADER :</label>
          <textarea 
          value={props.headers}
          onChange={props.onHeaderChange}
@@ -33,6 +27,17 @@ import React from "react";
 
          </textarea>
           </div>
+          <div className="body-entry">
+         <label>BODY :</label>
+         <textarea 
+         value={props.body}
+         onChange={props.onBodyChange}
+         ></textarea>
+
+          </div>
+
+
+          
 
           <button className="button"
           onClick={props.submitHandler}>

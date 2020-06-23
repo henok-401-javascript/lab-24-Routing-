@@ -7,10 +7,10 @@ return(
     <header>
     <ul>
       <li>
-        <Link to='/'> Home</Link>
+        <Link className="link" to='/'> Home</Link>
         </li>
       <li>
-        <Link to='/history'>History</Link>
+        <Link className="link" to='/history'>History</Link>
         </li>
     </ul>
     <h1>RESTy APP</h1>

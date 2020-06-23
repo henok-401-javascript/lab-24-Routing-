@@ -5,6 +5,7 @@ import Form from './components/form/form';
 import Result from './components/results/results';
 import History from './components/history/history';
 import Header from './components/header/header';
+import  './style/style.scss';
 
 
 class App extends React.Component{
@@ -18,6 +19,8 @@ class App extends React.Component{
         headerResponse:'',
         bodyResponse:'',
         history:[],
+        loading:false,
+        
       
     }
   }
@@ -33,8 +36,13 @@ this.setState({...this.state,url:e.target.value});
   onHeaderChange(e){
     this.setState({...this.state,header:e.target.value});
   }
+ async renderHandler(e){
+await this.setState({url:e.url,body:e.body,method:e.method,header:e.header});
+await this.submitHandler();
+  }
 
-  submitHandler(e){
+  async submitHandler(e){
+    await this.setState({loading:true});
     let request = {
       url:this.state.url,
       method:this.state.method,
@@ -42,8 +50,30 @@ this.setState({...this.state,url:e.target.value});
       body:this.state.body,
     }
 
-    this.setState({history:[...this.state.history ,request]});
+    await this.setState({history:[...this.state.history ,request]});
 // fetch data from api call 
+
+let resHeader = {};
+let resBody = {};
+
+let res = await fetch(this.state.url, {
+  method:this.state.method,
+  body:this.state.method ==='GET' ?null : JSON.parse(this.state.body),
+  header:{...JSON.parse(this.state.header) , Accept:'application.json'},
+});
+if(res.status === 200){
+  resBody = await res.json();
+
+  for(const entry of res.header.entries()){
+    resHeader[entry[0]] = entry[1];
+  }
+}
+resBody = await res.json();
+  this.setState({loading:false, headerResponse:resHeader , bodyResponse:resBody});
+
+
+
+
   }
 
   render(){
@@ -63,6 +93,12 @@ this.setState({...this.state,url:e.target.value});
      onHeaderChange={this.onHeaderChange.bind(this)}
      submitHandler={this.submitHandler.bind(this)}
      />
+<History size='size' history={this.state.history}/>
+
+<If condition={this.state.loading}>
+<h4>loading....</h4>
+</If>
+
 <If 
 condition={this.state.headerResponse ||
    this.state.bodyResponse}>
@@ -74,7 +110,7 @@ condition={this.state.headerResponse ||
 </If>
 
 
-<History size='size' history={this.state.history}/>
+
      </Route>
    
      <Route path='/history' exact>

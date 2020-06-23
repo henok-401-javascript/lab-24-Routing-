@@ -4,25 +4,33 @@ import React from 'react';
 
 // props.history
 
-function History(props){
+class History extends React.Component{
+constructor(props){
+  super(props)
+  this.state = {
+    redirect:false,
+  };
+}
+
+  renderHandler(request){
+   this.props.renderHandler(request);
+  }
+
+render(){
 
   let storedHistory = [];
 console.log(storedHistory);
-function renderHandler(e){
-  console.log('rerender', e);
-}
-
 
 // i need to save the url method header and body. 
 
-for(let i = 0; i < props.history.length;i ++){
-if(props.size === 'light'){
+for(let i = 0; i < this.props.history.length;i ++){
+if(this.props.size === 'light'){
 storedHistory.push(
-<div>
-  <span className="historyURL">{props.history[i].url}</span>
-  <span className="historyMethod">{props.history[i].method}</span>
+<div key={i}>
+  <span className="historyURL">{this.props.history[i].url}</span>
+  <span className="historyMethod">{this.props.history[i].method}</span>
   <button onClick={(e) => {
-    renderHandler(props.history[i])
+    this.renderHandler(this.props.history[i])
   }}>RERUN</button>
 </div>
 
@@ -32,16 +40,16 @@ storedHistory.push(
 else{
 
   storedHistory.push(
-    <div>
-      <span className="historyURL">{props.history[i].url}</span>
-      <span className="historyMethod">{props.history[i].method}</span>
+    <div key={i}>
+      <span className="historyURL">{this.props.history[i].url}</span>
+      <span className="historyMethod">{this.props.history[i].method}</span>
       <button onClick={(e) => {
-        renderHandler(props.history[i])
+        this.renderHandler(this.props.history[i])
       }}>RERUN
       </button>
 <div>
-<span>{props.history[i].header}</span>
-<span>{props.history[i].body}</span>
+<span>{this.props.history[i].header}</span>
+<span>{this.props.history[i].body}</span>
 
 </div>
     </div>
@@ -61,7 +69,7 @@ return (
   ); 
   
 
-
+}
 
 } 
 export default History;

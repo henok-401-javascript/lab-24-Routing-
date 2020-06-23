@@ -6,7 +6,7 @@
 ### Links and Resources
 
 
-- [submission PR](https://github.com/henok-401-javascript/lab-24-routing-/pull/1)
+- [submission PR](https://github.com/henok-401-javascript/lab-24-routing-/pull/2)
 - [netlify](https://keen-minsky-14919a.netlify.app)
 
 
